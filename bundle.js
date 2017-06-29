@@ -67,7 +67,8 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-console.log("Test app")
+console.log('Test app')
+
 
 /***/ })
 /******/ ]);
