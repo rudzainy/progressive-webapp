@@ -10,6 +10,9 @@ module.exports = {
   output: {
     filename: 'bundle.js'
   },
+  devServer: {
+    historyApiFallback: true
+  },
   module: {
     rules: [{
       enforce: 'pre',
@@ -21,11 +24,12 @@ module.exports = {
       loader: 'babel-loader',
       exclude: /node_modules/
     }, {
+      test: /(base\.css)$/,
+      use: ExtractTextPlugin.extract('css-loader')
+    }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader?modules,localIdentName="[name]-[local]-[hash:base64:6]"'
-      })
+      exclude: /(base\.css)$/,
+      use: ExtractTextPlugin.extract(['css-loader?modules,localIdentName="[name]-[local]-[hash:base64:6]",camelCase'])
     }]
   },
   plugins: [
